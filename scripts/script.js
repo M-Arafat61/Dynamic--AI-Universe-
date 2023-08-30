@@ -25,6 +25,7 @@ const displayLoadData = (aiProducts, isShowAll) => {
     // console.log(product.description)
     const cardDiv = document.createElement("div")
     cardDiv.classList = `card bg-gray-100 p-4 shadow-xl`
+
     // an array of formatted features
     const features = product.features.map(
       (feature, index) => `${index + 1}. ${feature}`
@@ -84,16 +85,24 @@ const modalDataHandle = async (id) => {
 const showDetails = (dataDetails) => {
   const modalContainer = document.getElementById("modal-container")
   // const div = document.createElement("div")
+  const theFeatures = dataDetails.features
+  const featureNames = []
+  for (const key in theFeatures) {
+    if (theFeatures.hasOwnProperty(key)) {
+      const feature = theFeatures[key]
+      featureNames.push(feature.feature_name)
+    }
+  }
+  const integrations = dataDetails.integrations
+  console.log(integrations)
   modalContainer.innerHTML = `
   
+  <section class=" max-w-5xl bg-white p-5 md:p-16 ">
 
-
-  <section class="max-w-screen-md bg-white p-16 ">
-
-  <div class="grid grid-cols-2 gap-3 justify-center items-center ">
-  <div class="flex flex-col bg-orange-100 rounded-lg p-5 border-2 border-[#EB5757]">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-3 justify-center items-center ">
+  <div class="flex flex-col max-w-max bg-orange-100 rounded-lg p-5 border-2 border-[#EB5757]">
   <h2 class="mb-5 text-xl font-bold pb-2">${dataDetails.description}</h2>
-  <div class="grid grid-cols-3 gap-3">
+  <div class="grid grid-rows-1 md:grid-cols-3 gap-3">
   <div class="bg-white text-[#03A30A] text-sm font-bold p-2 items-center justify-center flex flex-col rounded-lg">
   <h2>${dataDetails?.pricing[0]?.price}</h2>
   <h2>${dataDetails?.pricing[0]?.plan}</h2>
@@ -107,6 +116,20 @@ const showDetails = (dataDetails) => {
   <h2 class="">${dataDetails?.pricing[2]?.plan}</h2>
   </div>
   </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5 pl-5"><div>
+  <ul class="list-disc"><span class=" text-lg font-bold">Features</span>
+  ${featureNames
+    .map((featureName, index) => `<li class="text-sm">${featureName}</li>`)
+    .join("")}
+  </ul>
+  </div>
+  <div>
+  <ul class="list-disc"><span class="text-lg font-bold">Integrations</span>${integrations
+    .map((item) => `<li class="text-sm">${item}</li>`)
+    .slice(0, 3)
+    .join("")}
+  </ul>
+  </div></div>
   </div>
   
  <div class="flex flex-col rounded-lg">
@@ -120,17 +143,7 @@ const showDetails = (dataDetails) => {
  </div>
   </div>
 
-  
-  </section>
- 
-
-
-
-
-
-
-
-
+</section>
   `
   // modalContainer.appendChild(div)
   // const modal = document.getElementById("my-modal")
@@ -138,12 +151,3 @@ const showDetails = (dataDetails) => {
   console.log(dataDetails)
 }
 loadData()
-/*     <p></p>
-    <p></p>
-    <p></p>
-    <></>
-    <></>
-    <></>
-    <></>
-    <></>
-    <></> */
