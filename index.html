@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cupcake">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI HUB</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.2/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="flex flex-col justify-center items-center mt-10 mb-10">
+        <h2 class="text-3xl font-bold mb-5">AI Universe Hub</h2>
+        <button
+          type="button"
+          onclick="sorted()"
+          class="text-white bg-gradient-to-r from-red-300 via-red-400 to-red-500 hover:bg-gradient-to-br font-bold tracking-tight rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2"
+        >
+          Sort By Date
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="max-w-screen-xl m-auto">
+        <!-- ai product container -->
+        <div
+          id="ai-product-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        ></div>
+        <!-- show all button -->
+        <div id="show-all-container" class="text-center mt-8 hidden">
+          <button
+            type="button"
+            onclick="handleShowAllButton()"
+            class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br font-semibold tracking-tight rounded-lg text-lg px-5 py-2.5 text-center mr-2 mb-2"
+          >
+            Show All
+          </button>
+        </div>
+      </section>
+      <section>
+        <dialog id="my_modal" class="modal modal-bottom sm:modal-middle">
+          <form method="dialog">
+            <div id="modal-container"></div>
+            <div class="modal-action">
+              <button class="btn">Close</button>
+            </div>
+          </form>
+        </dialog>
+      </section>
+    </main>
+
+    <script src="./scripts/script.js"></script>
+  </body>
+</html>
